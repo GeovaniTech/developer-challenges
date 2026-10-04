@@ -9,14 +9,19 @@ import br.com.govanidebastiani.dynamoxquiz.core.domain.onError
 import br.com.govanidebastiani.dynamoxquiz.core.domain.onSuccess
 import br.com.govanidebastiani.dynamoxquiz.core.domain.toStringResource
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.copy
+import kotlin.invoke
+import kotlin.onSuccess
 
 class QuizViewModel(
     savedStateHandle: SavedStateHandle,
-    private val fetchNewQuestionUseCase: FetchNewQuestionUseCase
+    private val fetchNewQuestionUseCase: FetchNewQuestionUseCase,
+    private val submitAnswerUseCase: SubmitAnswerUseCase
 ): ViewModel() {
     val playerNickname = savedStateHandle.toRoute<Route.QuizScreen>().playerNickname
     val ignoreIds = savedStateHandle.toRoute<Route.QuizScreen>().ignoreIds.toMutableList()
@@ -32,28 +37,48 @@ class QuizViewModel(
         onNextQuestion()
     }
 
-    fun checkSelectedOption(selectedOption: String) {
+    fun checkSelectedOption(selectedOption: String) = viewModelScope.launch  {
+        val result = submitAnswerUseCase.invoke(_state.value.currentQuestion!!.id, selectedOption)
 
-    }
-
-    fun onNextQuestion() {
-        viewModelScope.launch {
-            _state.update {
-                it.copy(isLoading = true, currentOption = null, isCorrect = null)
+        result.onSuccess { answerResponse ->
+            if (answerResponse.isCorrect) {
+                _countCorrectAnswers += 1
             }
 
-            val result = fetchNewQuestionUseCase.invoke(_questionIds)
+            _state.update {
+                it.copy(isCorrect = answerResponse.isCorrect, currentOption = selectedOption)
+            }
+        }.onError { error ->
+            _state.update {
+                it.copy(isLoading = false, currentQuestion = null, errorMessage = error.toStringResource())
+            }
+        }
+    }
 
-            result.onSuccess { question ->
-                ignoreIds.add(question.id)
-                _countAnsweredQuestions += 1
-                _state.update {
-                    it.copy(isLoading = false, currentQuestion = question, isLastQuestion = _countAnsweredQuestions == 10L)
-                }
-            }.onError { error ->
-                _state.update {
-                    it.copy(isLoading = false, currentQuestion = null, errorMessage = error.toStringResource())
-                }
+    fun onNextQuestion() = viewModelScope.launch {
+        _state.update {
+            it.copy(isLoading = true, currentOption = null, isCorrect = null)
+        }
+
+        val result = fetchNewQuestionUseCase.invoke(_questionIds)
+
+        result.onSuccess { question ->
+            ignoreIds.add(question.id)
+            _countAnsweredQuestions += 1
+            _state.update {
+                it.copy(
+                    isLoading = false,
+                    currentQuestion = question,
+                    isLastQuestion = _countAnsweredQuestions == 10L
+                )
+            }
+        }.onError { error ->
+            _state.update {
+                it.copy(
+                    isLoading = false,
+                    currentQuestion = null,
+                    errorMessage = error.toStringResource()
+                )
             }
         }
     }

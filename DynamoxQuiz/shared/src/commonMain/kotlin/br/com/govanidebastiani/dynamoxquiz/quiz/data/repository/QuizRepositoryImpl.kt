@@ -3,6 +3,8 @@ package br.com.govanidebastiani.dynamoxquiz.quiz.data.repository
 import br.com.govanidebastiani.dynamoxquiz.core.domain.DataError
 import br.com.govanidebastiani.dynamoxquiz.core.domain.Result
 import br.com.govanidebastiani.dynamoxquiz.core.domain.map
+import br.com.govanidebastiani.dynamoxquiz.quiz.data.dto.QuestionAnswerRequestDto
+import br.com.govanidebastiani.dynamoxquiz.quiz.data.dto.QuestionAnswerResponseDto
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.local.QuizLocalDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.mappers.toQuestion
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
@@ -17,5 +19,12 @@ class QuizRepositoryImpl(
         return quizRemoteDataSource.fetchQuestion().map {
             it.toQuestion()
         }
+    }
+
+    override suspend fun submitAnswer(
+        questionId: String,
+        answer: String
+    ): Result<QuestionAnswerResponseDto, DataError.Remote> {
+        return quizRemoteDataSource.submitAnswer(questionId, QuestionAnswerRequestDto(answer))
     }
 }

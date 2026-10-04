@@ -50,7 +50,7 @@ fun QuizScreenRoute(
     QuizScreen(
         state = state,
         onNextQuestionClick= {
-
+            viewModel.onNextQuestion()
         },
         onOptionSelected = viewModel::checkSelectedOption,
     )

@@ -13,6 +13,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.repository.QuizRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
@@ -43,6 +44,7 @@ val repositoryModule = module {
 val useCaseModule = module {
     factory { CreatePlayerUseCase(get()) }
     factory { FetchNewQuestionUseCase(get()) }
+    factory { SubmitAnswerUseCase(get()) }
 }
 
 val networkModule = module {
