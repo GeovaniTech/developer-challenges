@@ -1,0 +1,4 @@
+<resources>
+    <string name="player_nickname_screen_enter_your_nickname">Enter Your Nickname</string>
+    <string name="player_nickname_screen_start_quiz">Start Quiz</string>
+</resources>
