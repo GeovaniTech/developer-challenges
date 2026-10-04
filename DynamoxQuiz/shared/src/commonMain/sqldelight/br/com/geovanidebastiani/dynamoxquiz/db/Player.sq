@@ -4,3 +4,6 @@ CREATE TABLE Player(
 
 insertPlayer:
 INSERT INTO Player(nickname) VALUES (?);
+
+fetchPlayerByNickname:
+SELECT Player.nickname FROM Player WHERE nickname = ?;

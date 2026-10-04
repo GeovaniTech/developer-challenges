@@ -24,6 +24,7 @@ import br.com.govanidebastiani.dynamoxquiz.Greeting
 import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerScreen
 import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerScreenRoot
 import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerViewModel
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizScreen
 import org.jetbrains.compose.resources.painterResource
 
 import dynamoxquiz.shared.generated.resources.Res
@@ -50,10 +51,17 @@ fun App() {
                     val viewModel = koinViewModel<PlayerViewModel>()
                     PlayerScreenRoot(
                         viewModel = viewModel,
-                        onNavigateToQuiz = {
-
+                        onNavigateToQuiz = { playerNickname ->
+                            navController.navigate(Route.QuizScreen(playerNickname))
                         }
                     )
+                }
+
+                composable<Route.QuizScreen>(
+                    exitTransition = { slideOutHorizontally() },
+                    popEnterTransition = { slideInHorizontally() }
+                ) {
+                    QuizScreen()
                 }
             }
         }

@@ -13,4 +13,8 @@ internal class PlayerRepositoryImpl(
     override suspend fun createPlayer(player: Player) = withContext(Dispatchers.IO) {
         playerDataSource.createPlayer(player)
     }
+
+    override suspend fun fetchPlayerByNickname(playerNickname: String): String? = withContext(Dispatchers.IO) {
+        return@withContext playerDataSource.fetchPlayerByNickname(playerNickname)
+    }
 }

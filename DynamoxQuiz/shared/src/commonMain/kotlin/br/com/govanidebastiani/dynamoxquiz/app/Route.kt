@@ -8,4 +8,7 @@ sealed interface Route {
 
     @Serializable
     data object PlayerScreen: Route
+
+    @Serializable
+    data class QuizScreen(val playerNickname: String): Route
 }

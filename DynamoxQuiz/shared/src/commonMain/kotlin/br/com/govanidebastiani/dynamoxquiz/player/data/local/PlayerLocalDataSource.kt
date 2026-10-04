@@ -10,4 +10,8 @@ internal class PlayerLocalDataSource(
     suspend fun createPlayer(player: Player) {
         playerQueries.insertPlayer(player.nickname)
     }
+
+    suspend fun fetchPlayerByNickname(playerNickname: String): String? {
+        return playerQueries.fetchPlayerByNickname(playerNickname).executeAsOneOrNull()
+    }
 }
