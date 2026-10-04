@@ -19,6 +19,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreViewModel
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.history.HistoryScreenViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -29,6 +30,7 @@ val viewModelModule = module {
     viewModelOf(::PlayerViewModel)
     viewModelOf(::QuizViewModel)
     viewModelOf(::FinalScoreViewModel)
+    viewModelOf(::HistoryScreenViewModel)
 }
 
 val databaseModule = module {

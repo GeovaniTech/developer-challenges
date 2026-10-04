@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColor
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.quizMock
 import dynamoxquiz.shared.generated.resources.Res
 import dynamoxquiz.shared.generated.resources.final_score_quiz_completed
 import dynamoxquiz.shared.generated.resources.final_score_restart_quiz
@@ -162,13 +163,7 @@ fun FinalScoreScreen(
 fun FinalScoreScreenPreview() {
     FinalScoreScreen(
         state = FinalScoreUIState(
-            quiz = Quiz(
-                id = 1,
-                playerNickname = "Geovani",
-                amountCorrectAnswers = 10,
-                amountQuestions = 10,
-                createdAt = Clock.System.now().toEpochMilliseconds()
-            ),
+            quiz = quizMock,
             isLoading = false
         ),
         onRestartQuiz = { _, _ -> },
