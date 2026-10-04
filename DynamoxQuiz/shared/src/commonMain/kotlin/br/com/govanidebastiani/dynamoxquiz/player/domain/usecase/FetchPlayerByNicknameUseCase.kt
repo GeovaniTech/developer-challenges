@@ -1,4 +1,4 @@
-package br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase
+package br.com.govanidebastiani.dynamoxquiz.player.domain.usecase
 
 import br.com.govanidebastiani.dynamoxquiz.player.domain.repository.PlayerRepository
 

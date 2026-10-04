@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.govanidebastiani.dynamoxquiz.core.domain.DataError
 import br.com.govanidebastiani.dynamoxquiz.core.domain.toStringResource
 import br.com.govanidebastiani.dynamoxquiz.player.domain.usecase.CreatePlayerUseCase
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchPlayerByNicknameUseCase
+import br.com.govanidebastiani.dynamoxquiz.player.domain.usecase.FetchPlayerByNicknameUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

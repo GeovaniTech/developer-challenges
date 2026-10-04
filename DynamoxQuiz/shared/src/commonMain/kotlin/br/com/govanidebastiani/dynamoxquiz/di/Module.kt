@@ -15,7 +15,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.repository.QuizRepositoryIm
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchAllQuizzesUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchPlayerByNicknameUseCase
+import br.com.govanidebastiani.dynamoxquiz.player.domain.usecase.FetchPlayerByNicknameUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchQuizByIdUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase

@@ -2,7 +2,7 @@ package br.com.govanidebastiani.dynamoxquiz.player.domain.usecase
 
 import br.com.govanidebastiani.dynamoxquiz.player.data.FakePlayerRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.player.domain.Player
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchPlayerByNicknameUseCase
+import br.com.govanidebastiani.dynamoxquiz.player.domain.usecase.FetchPlayerByNicknameUseCase
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
