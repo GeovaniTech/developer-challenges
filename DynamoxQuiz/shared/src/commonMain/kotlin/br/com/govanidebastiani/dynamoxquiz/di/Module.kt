@@ -2,6 +2,7 @@ package br.com.govanidebastiani.dynamoxquiz.di
 
 import br.com.geovanidebastiani.dynamoxquiz.db.DynamoxQuizDatabase
 import br.com.govanidebastiani.dynamoxquiz.core.data.DatabaseFactory
+import br.com.govanidebastiani.dynamoxquiz.core.data.HttpClientFactory
 import br.com.govanidebastiani.dynamoxquiz.player.data.local.PlayerLocalDataSource
 import br.com.govanidebastiani.dynamoxquiz.player.data.repository.PlayerRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.player.domain.repository.PlayerRepository
@@ -31,4 +32,8 @@ val repositoryModule = module {
 
 val useCaseModule = module {
     factory { CreatePlayerUseCase(get()) }
+}
+
+val networkModule = module {
+    single { HttpClientFactory.create(get()) }
 }

@@ -11,7 +11,8 @@ fun initKoin(config: KoinAppDeclaration? = null) {
             databaseModule,
             repositoryModule,
             useCaseModule,
-            targetModule
+            targetModule,
+            networkModule
         )
     }
 }
