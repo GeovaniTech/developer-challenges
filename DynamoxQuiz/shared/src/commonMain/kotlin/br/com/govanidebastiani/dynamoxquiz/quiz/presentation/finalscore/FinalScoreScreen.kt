@@ -110,44 +110,44 @@ fun FinalScoreScreen(
                         )
                     }
                 }
-            }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Button(
-                    onClick = {
-                        state.quiz?.let { quiz ->
-                            onRestartQuiz(quiz.playerNickname, state.ignoreIds)
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = DynamoxPrimaryColor),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(56.dp),
-                    shape = MaterialTheme.shapes.medium
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Text(
-                        text = stringResource(Res.string.final_score_restart_quiz),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+                    Button(
+                        onClick = {
+                            state.quiz?.let { quiz ->
+                                onRestartQuiz(quiz.playerNickname, state.ignoreIds)
+                            }
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = DynamoxPrimaryColor),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(56.dp),
+                        shape = MaterialTheme.shapes.medium
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.final_score_restart_quiz),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
 
-                Button(
-                    onClick = onSeeHistory,
-                    colors = ButtonDefaults.buttonColors(containerColor = DynamoxPrimaryColor),
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(56.dp),
-                    shape = MaterialTheme.shapes.medium
-                ) {
-                    Text(
-                        text = stringResource(Res.string.final_score_see_history),
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Button(
+                        onClick = onSeeHistory,
+                        colors = ButtonDefaults.buttonColors(containerColor = DynamoxPrimaryColor),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(56.dp),
+                        shape = MaterialTheme.shapes.medium
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.final_score_see_history),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
             }
         }
