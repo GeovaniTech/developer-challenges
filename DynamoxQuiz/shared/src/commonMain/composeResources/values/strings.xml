@@ -7,4 +7,6 @@
     <string name="error_server">Our servers are having trouble right now. Please try again later.</string>
     <string name="error_serialization">We encountered an issue processing the data. Please try again.</string>
     <string name="error_unknown">An unexpected error occurred. Please try again.</string>
+    <string name="quiz_screen_finish_screen">Finish Screen</string>
+    <string name="quiz_screen_next_question">Next Question</string>
 </resources>

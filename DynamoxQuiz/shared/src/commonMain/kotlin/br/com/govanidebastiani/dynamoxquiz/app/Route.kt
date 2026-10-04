@@ -10,5 +10,5 @@ sealed interface Route {
     data object PlayerScreen: Route
 
     @Serializable
-    data class QuizScreen(val playerNickname: String): Route
+    data class QuizScreen(val playerNickname: String, val ignoreIds: List<String> = emptyList()): Route
 }

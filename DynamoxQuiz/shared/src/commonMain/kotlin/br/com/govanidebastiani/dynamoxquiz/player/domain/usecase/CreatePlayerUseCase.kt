@@ -1,6 +1,5 @@
 package br.com.govanidebastiani.dynamoxquiz.player.domain.usecase
 
-import androidx.compose.ui.geometry.Rect
 import br.com.govanidebastiani.dynamoxquiz.player.domain.Player
 import br.com.govanidebastiani.dynamoxquiz.player.domain.repository.PlayerRepository
 import kotlin.time.Clock
