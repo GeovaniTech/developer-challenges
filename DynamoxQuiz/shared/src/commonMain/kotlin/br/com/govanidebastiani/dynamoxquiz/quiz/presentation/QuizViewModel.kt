@@ -9,6 +9,7 @@ import br.com.govanidebastiani.dynamoxquiz.core.domain.onError
 import br.com.govanidebastiani.dynamoxquiz.core.domain.onSuccess
 import br.com.govanidebastiani.dynamoxquiz.core.domain.toStringResource
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +22,8 @@ import kotlin.onSuccess
 class QuizViewModel(
     savedStateHandle: SavedStateHandle,
     private val fetchNewQuestionUseCase: FetchNewQuestionUseCase,
-    private val submitAnswerUseCase: SubmitAnswerUseCase
+    private val submitAnswerUseCase: SubmitAnswerUseCase,
+    private val saveQuizUseCase: SaveQuizUseCase
 ): ViewModel() {
     val playerNickname = savedStateHandle.toRoute<Route.QuizScreen>().playerNickname
     val ignoreIds = savedStateHandle.toRoute<Route.QuizScreen>().ignoreIds.toMutableList()
@@ -80,6 +82,19 @@ class QuizViewModel(
                     errorMessage = error.toStringResource()
                 )
             }
+        }
+    }
+
+    fun onSaveQuiz() = viewModelScope.launch {
+        val quizId = saveQuizUseCase.invoke(playerNickname = playerNickname, amountCorrectAnswers = _countCorrectAnswers)
+        _state.update {
+            it.copy(navigateToFinalScore = true, quizId = quizId, ignoreIds = _questionIds)
+        }
+    }
+
+    fun navigateToFinalScoreHandled() {
+        _state.update {
+            it.copy(navigateToFinalScore = false)
         }
     }
 }

@@ -9,6 +9,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.local.QuizLocalDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.mappers.toQuestion
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Question
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
 
 class QuizRepositoryImpl(
@@ -26,5 +27,9 @@ class QuizRepositoryImpl(
         answer: String
     ): Result<QuestionAnswerResponseDto, DataError.Remote> {
         return quizRemoteDataSource.submitAnswer(questionId, QuestionAnswerRequestDto(answer))
+    }
+
+    override suspend fun createQuiz(quiz: Quiz): Long {
+        return quizLocalDataSource.createQuiz(quiz)
     }
 }

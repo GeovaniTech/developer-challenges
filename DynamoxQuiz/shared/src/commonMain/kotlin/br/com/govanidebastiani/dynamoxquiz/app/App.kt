@@ -13,6 +13,7 @@ import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerScreenRoot
 import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerViewModel
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizScreenRoute
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreScreenRoot
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -49,9 +50,16 @@ fun App() {
                     QuizScreenRoute(
                         viewModel = viewModel,
                         onNavigateToFinalScore = { quizId, ignoreIds ->
-
+                            navController.navigate(Route.FinalScore(quizId, ignoreIds))
                         }
                     )
+                }
+
+                composable<Route.FinalScore>(
+                    exitTransition = { slideOutHorizontally() },
+                    popEnterTransition = { slideInHorizontally() }
+                ) {
+                    FinalScoreScreenRoot()
                 }
             }
         }
