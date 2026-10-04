@@ -12,7 +12,7 @@ class FakePlayerRepositoryImpl : PlayerRepository{
 
     override suspend fun fetchPlayerByNickname(playerNickname: String): String? {
         return savedPlayers.firstOrNull { player ->
-            player.nickname.equals(playerNickname, ignoreCase = true)
+            player.nickname == playerNickname
         }?.nickname
     }
 }

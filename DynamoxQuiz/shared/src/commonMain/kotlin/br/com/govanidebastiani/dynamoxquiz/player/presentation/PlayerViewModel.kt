@@ -5,13 +5,15 @@ import androidx.lifecycle.viewModelScope
 import br.com.govanidebastiani.dynamoxquiz.core.domain.DataError
 import br.com.govanidebastiani.dynamoxquiz.core.domain.toStringResource
 import br.com.govanidebastiani.dynamoxquiz.player.domain.usecase.CreatePlayerUseCase
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchPlayerByNicknameUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PlayerViewModel(
-    private val createPlayerUseCase: CreatePlayerUseCase
+    private val createPlayerUseCase: CreatePlayerUseCase,
+    private val fetchPlayerByNicknameUseCase: FetchPlayerByNicknameUseCase
 ): ViewModel() {
     private val _state = MutableStateFlow(PlayerUIState())
     val state get() = _state.asStateFlow()
@@ -23,18 +25,30 @@ class PlayerViewModel(
     }
 
     fun onStartQuizClick() = viewModelScope.launch {
-        val result = createPlayerUseCase.invoke(_state.value.playerNickname)
+        val nickname = _state.value.playerNickname
+        val playerExists = fetchPlayerByNicknameUseCase.invoke(nickname) != null
 
-        if (result.isSuccess) {
+        if (playerExists) {
             _state.update {
                 it.copy(isStartQuiz = true)
             }
-        } else {
-            _state.update {
-                it.copy(isStartQuiz = false, errorMessage = DataError.Local.UNKNOWN.toStringResource())
+            return@launch
+        }
+
+        val result = createPlayerUseCase.invoke(nickname)
+
+        _state.update {
+            if (result.isSuccess) {
+                it.copy(isStartQuiz = true)
+            } else {
+                it.copy(
+                    isStartQuiz = false,
+                    errorMessage = DataError.Local.UNKNOWN.toStringResource()
+                )
             }
         }
     }
+
 
     fun onNavigationToQuizFinished() {
         _state.update { it.copy(isStartQuiz = false) }
