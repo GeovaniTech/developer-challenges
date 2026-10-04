@@ -13,6 +13,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.local.QuizLocalDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.repository.QuizRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchAllQuizzesUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchQuizByIdUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
@@ -54,6 +55,7 @@ val useCaseModule = module {
     factory { SubmitAnswerUseCase(get()) }
     factory { SaveQuizUseCase(get()) }
     factory { FetchQuizByIdUseCase(get()) }
+    factory { FetchAllQuizzesUseCase(get()) }
 }
 
 val networkModule = module {

@@ -11,6 +11,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Question
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
+import kotlinx.coroutines.flow.Flow
 
 class QuizRepositoryImpl(
     private val quizLocalDataSource: QuizLocalDataSource,
@@ -35,5 +36,9 @@ class QuizRepositoryImpl(
 
     override suspend fun fetchQuizById(quizId: Long): Quiz {
         return quizLocalDataSource.fetchQuiz(quizId)
+    }
+
+    override suspend fun fetchAllQuizzes(): List<Quiz> {
+        return quizLocalDataSource.fetchAllQuizzes()
     }
 }
