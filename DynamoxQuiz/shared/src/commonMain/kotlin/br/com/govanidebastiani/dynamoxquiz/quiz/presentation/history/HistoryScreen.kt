@@ -133,7 +133,7 @@ fun QuizHistoryCard(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = stringResource(Res.string.history_quiz_score_format, quiz.amountCorrectAnswers, quiz.amountQuestions),
+                    text = stringResource(Res.string.history_quiz_score_format,  quiz.amountQuestions, quiz.amountCorrectAnswers),
                     style = MaterialTheme.typography.titleSmall,
                     color = DynamoxPrimaryColor
                 )

@@ -15,6 +15,8 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizScreenRoute
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreScreenRoot
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreViewModel
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.history.HistoryScreenRoot
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.history.HistoryScreenViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -39,6 +41,9 @@ fun App() {
                         viewModel = viewModel,
                         onNavigateToQuiz = { playerNickname ->
                             navController.navigate(Route.QuizScreen(playerNickname))
+                        },
+                        onSeeHistory = {
+                            navController.navigate(Route.HistoryScreen)
                         }
                     )
                 }
@@ -67,8 +72,15 @@ fun App() {
                             navController.navigate(Route.QuizScreen(playerNickname, ignoreIds))
                         },
                         onSeeHistory = {
-
+                            navController.navigate(Route.HistoryScreen)
                         }
+                    )
+                }
+
+                composable<Route.HistoryScreen> {
+                    val viewModel = koinViewModel<HistoryScreenViewModel>()
+                    HistoryScreenRoot(
+                        viewModel = viewModel
                     )
                 }
             }

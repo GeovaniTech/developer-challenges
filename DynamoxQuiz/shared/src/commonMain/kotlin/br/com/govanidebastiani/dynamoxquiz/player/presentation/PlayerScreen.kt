@@ -1,6 +1,7 @@
 package br.com.govanidebastiani.dynamoxquiz.player.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,7 +19,6 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,17 +31,20 @@ import androidx.compose.ui.text.input.ImeAction.Companion.Done
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColor
 import dynamoxquiz.shared.generated.resources.Res
 import dynamoxquiz.shared.generated.resources.dynamox_bg
 import dynamoxquiz.shared.generated.resources.player_nickname_screen_enter_your_nickname
 import dynamoxquiz.shared.generated.resources.player_nickname_screen_start_quiz
+import dynamoxquiz.shared.generated.resources.player_nickname_see_history
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun PlayerScreenRoot(
     viewModel: PlayerViewModel,
-    onNavigateToQuiz: (String) -> Unit
+    onNavigateToQuiz: (String) -> Unit,
+    onSeeHistory: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -54,7 +57,8 @@ fun PlayerScreenRoot(
     PlayerScreen(
         state = state,
         onNicknameChanged = viewModel::onNicknameChanged,
-        onStartQuizClick = viewModel::onStartQuizClick
+        onStartQuizClick = viewModel::onStartQuizClick,
+        onSeeHistory = onSeeHistory
     )
 }
 
@@ -62,7 +66,8 @@ fun PlayerScreenRoot(
 fun PlayerScreen(
     state: PlayerUIState,
     onNicknameChanged: (String) -> Unit,
-    onStartQuizClick: () -> Unit
+    onStartQuizClick: () -> Unit,
+    onSeeHistory: () -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -145,6 +150,19 @@ fun PlayerScreen(
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+
+                    Text(
+                        text = stringResource(Res.string.player_nickname_see_history),
+                        color = DynamoxPrimaryColor,
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.clickable {
+                            onSeeHistory.invoke()
+                        }
+                    )
                 }
             }
         }
@@ -161,7 +179,8 @@ fun PlayerScreenPreview() {
         PlayerScreen(
             state = PlayerUIState(),
             onNicknameChanged = {},
-            onStartQuizClick = {}
+            onStartQuizClick = {},
+            onSeeHistory = {}
         )
     }
 }

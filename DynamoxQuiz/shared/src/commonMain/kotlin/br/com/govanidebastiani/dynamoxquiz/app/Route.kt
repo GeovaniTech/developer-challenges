@@ -14,4 +14,7 @@ sealed interface Route {
 
     @Serializable
     data class FinalScore(val quizId: Long, val ignoreIds: List<String>): Route
+
+    @Serializable
+    data object HistoryScreen: Route
 }
