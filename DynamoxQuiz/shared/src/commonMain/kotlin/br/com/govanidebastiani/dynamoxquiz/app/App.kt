@@ -14,6 +14,7 @@ import br.com.govanidebastiani.dynamoxquiz.player.presentation.PlayerViewModel
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizScreenRoute
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreScreenRoot
+import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.finalscore.FinalScoreViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -59,7 +60,16 @@ fun App() {
                     exitTransition = { slideOutHorizontally() },
                     popEnterTransition = { slideInHorizontally() }
                 ) {
-                    FinalScoreScreenRoot()
+                    val viewModel = koinViewModel<FinalScoreViewModel>()
+                    FinalScoreScreenRoot(
+                        viewModel = viewModel,
+                        onRestartQuiz = { playerNickname, ignoreIds ->
+
+                        },
+                        onSeeHistory = {
+                            
+                        }
+                    )
                 }
             }
         }

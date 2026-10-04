@@ -9,4 +9,8 @@
     <string name="error_unknown">An unexpected error occurred. Please try again.</string>
     <string name="quiz_screen_finish_screen">Finish Screen</string>
     <string name="quiz_screen_next_question">Next Question</string>
+    <string name="final_score_restart_quiz">Restart Quiz</string>
+    <string name="final_score_see_history">See History</string>
+    <string name="final_score_quiz_completed">Quiz Completed!</string>
+    <string name="final_score_your_score">Your Score</string>
 </resources>
