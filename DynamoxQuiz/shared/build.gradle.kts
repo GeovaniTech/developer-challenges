@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -37,6 +39,14 @@ kotlin {
        }.configure {
            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
        }
+    }
+
+    sqldelight {
+        databases {
+            create("DynamoxQuizDatabase") {
+                packageName.set("br.com.geovanidebastiani.dynamoxquiz.db")
+            }
+        }
     }
 
     sourceSets {
