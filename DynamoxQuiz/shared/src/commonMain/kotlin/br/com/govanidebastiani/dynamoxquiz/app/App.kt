@@ -64,10 +64,10 @@ fun App() {
                     FinalScoreScreenRoot(
                         viewModel = viewModel,
                         onRestartQuiz = { playerNickname, ignoreIds ->
-
+                            navController.navigate(Route.QuizScreen(playerNickname, ignoreIds))
                         },
                         onSeeHistory = {
-                            
+
                         }
                     )
                 }

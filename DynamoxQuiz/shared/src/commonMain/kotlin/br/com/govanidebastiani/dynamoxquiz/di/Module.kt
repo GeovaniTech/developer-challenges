@@ -1,6 +1,7 @@
 package br.com.govanidebastiani.dynamoxquiz.di
 
 import br.com.geovanidebastiani.dynamoxquiz.db.DynamoxQuizDatabase
+import br.com.geovanidebastiani.dynamoxquiz.db.FetchQuizById
 import br.com.govanidebastiani.dynamoxquiz.core.data.DatabaseFactory
 import br.com.govanidebastiani.dynamoxquiz.core.data.HttpClientFactory
 import br.com.govanidebastiani.dynamoxquiz.player.data.local.PlayerLocalDataSource
@@ -13,6 +14,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.repository.QuizRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
+import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchQuizByIdUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
 import br.com.govanidebastiani.dynamoxquiz.quiz.presentation.QuizViewModel
@@ -49,6 +51,7 @@ val useCaseModule = module {
     factory { FetchNewQuestionUseCase(get()) }
     factory { SubmitAnswerUseCase(get()) }
     factory { SaveQuizUseCase(get()) }
+    factory { FetchQuizByIdUseCase(get()) }
 }
 
 val networkModule = module {

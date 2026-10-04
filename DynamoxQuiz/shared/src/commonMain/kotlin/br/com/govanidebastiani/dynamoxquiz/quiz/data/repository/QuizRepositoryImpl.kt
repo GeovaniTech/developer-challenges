@@ -32,4 +32,8 @@ class QuizRepositoryImpl(
     override suspend fun createQuiz(quiz: Quiz): Long {
         return quizLocalDataSource.createQuiz(quiz)
     }
+
+    override suspend fun fetchQuizById(quizId: Long): Quiz {
+        return quizLocalDataSource.fetchQuiz(quizId)
+    }
 }

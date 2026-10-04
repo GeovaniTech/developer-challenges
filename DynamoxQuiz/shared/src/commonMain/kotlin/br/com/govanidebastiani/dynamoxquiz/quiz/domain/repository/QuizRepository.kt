@@ -10,4 +10,5 @@ interface QuizRepository {
     suspend fun fetchQuestion(): Result<Question, DataError.Remote>
     suspend fun submitAnswer(questionId: String, answer: String): Result<QuestionAnswerResponseDto, DataError.Remote>
     suspend fun createQuiz(quiz: Quiz): Long
+    suspend fun fetchQuizById(quizId: Long): Quiz
 }
