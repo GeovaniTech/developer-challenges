@@ -2,7 +2,6 @@ package br.com.govanidebastiani.dynamoxquiz.quiz.data.local
 
 import br.com.geovanidebastiani.dynamoxquiz.db.QuizQueries
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
-import kotlinx.coroutines.flow.Flow
 
 class QuizLocalDataSource(
     private val quizQueries: QuizQueries
