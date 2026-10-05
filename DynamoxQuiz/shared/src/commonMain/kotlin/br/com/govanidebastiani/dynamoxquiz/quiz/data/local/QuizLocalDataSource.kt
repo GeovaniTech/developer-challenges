@@ -6,7 +6,7 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 class QuizLocalDataSource(
     private val quizQueries: QuizQueries
 ) {
-    fun createQuiz(quiz: Quiz): Long {
+    suspend fun createQuiz(quiz: Quiz): Long {
         quizQueries.insertQuiz(
             amountQuestions = quiz.amountQuestions,
             amountCorrectAnswers = quiz.amountCorrectAnswers,
@@ -17,7 +17,7 @@ class QuizLocalDataSource(
         return quizQueries.lastInsertRowId().executeAsOne()
     }
 
-    fun fetchQuiz(quizId: Long): Quiz {
+    suspend fun fetchQuiz(quizId: Long): Quiz {
         return quizQueries.fetchQuizById(quizId) { id, playerNickname, amountQuestions, amountCorrectAnswers, createdAt ->
             Quiz(
                 id = id,
@@ -29,7 +29,7 @@ class QuizLocalDataSource(
         }.executeAsOne()
     }
 
-    fun fetchAllQuizzes(): List<Quiz> {
+    suspend fun fetchAllQuizzes(): List<Quiz> {
         return quizQueries.queryAllQuiz() { id, playerNickname, amountQuestions, amountCorrectAnswers, createdAt ->
             Quiz(
                 id = id,

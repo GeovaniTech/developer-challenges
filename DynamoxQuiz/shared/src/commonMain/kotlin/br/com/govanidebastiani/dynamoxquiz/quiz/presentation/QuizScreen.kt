@@ -67,8 +67,9 @@ fun QuizScreenRoute(
         onNextQuestionClick= {
             if (state.isLastQuestion) {
                 viewModel.onSaveQuiz()
+            } else {
+                viewModel.onNextQuestion()
             }
-            viewModel.onNextQuestion()
         },
         onOptionSelected = viewModel::checkSelectedOption,
     )

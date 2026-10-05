@@ -11,14 +11,18 @@ import br.com.govanidebastiani.dynamoxquiz.quiz.data.remote.QuizRemoteDataSource
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Question
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.repository.QuizRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class QuizRepositoryImpl(
     private val quizLocalDataSource: QuizLocalDataSource,
     private val quizRemoteDataSource: QuizRemoteDataSource
 ): QuizRepository {
-    override suspend fun fetchQuestion(): Result<Question, DataError.Remote> {
-        return quizRemoteDataSource.fetchQuestion().map {
+    override suspend fun fetchQuestion(): Result<Question, DataError.Remote> = withContext(
+        Dispatchers.IO) {
+        return@withContext quizRemoteDataSource.fetchQuestion().map {
             it.toQuestion()
         }
     }
@@ -26,19 +30,19 @@ class QuizRepositoryImpl(
     override suspend fun submitAnswer(
         questionId: String,
         answer: String
-    ): Result<QuestionAnswerResponseDto, DataError.Remote> {
-        return quizRemoteDataSource.submitAnswer(questionId, QuestionAnswerRequestDto(answer))
+    ): Result<QuestionAnswerResponseDto, DataError.Remote> = withContext(Dispatchers.IO) {
+        return@withContext quizRemoteDataSource.submitAnswer(questionId, QuestionAnswerRequestDto(answer))
     }
 
-    override suspend fun createQuiz(quiz: Quiz): Long {
-        return quizLocalDataSource.createQuiz(quiz)
+    override suspend fun createQuiz(quiz: Quiz): Long = withContext(Dispatchers.IO) {
+        return@withContext quizLocalDataSource.createQuiz(quiz)
     }
 
-    override suspend fun fetchQuizById(quizId: Long): Quiz {
-        return quizLocalDataSource.fetchQuiz(quizId)
+    override suspend fun fetchQuizById(quizId: Long): Quiz = withContext(Dispatchers.IO) {
+        return@withContext quizLocalDataSource.fetchQuiz(quizId)
     }
 
-    override suspend fun fetchAllQuizzes(): List<Quiz> {
-        return quizLocalDataSource.fetchAllQuizzes()
+    override suspend fun fetchAllQuizzes(): List<Quiz> = withContext(Dispatchers.IO) {
+        return@withContext quizLocalDataSource.fetchAllQuizzes()
     }
 }
