@@ -7,14 +7,16 @@ class QuizLocalDataSource(
     private val quizQueries: QuizQueries
 ) {
     suspend fun createQuiz(quiz: Quiz): Long {
-        quizQueries.insertQuiz(
-            amountQuestions = quiz.amountQuestions,
-            amountCorrectAnswers = quiz.amountCorrectAnswers,
-            createdAt = quiz.createdAt,
-            playerNickname = quiz.playerNickname
-        )
+        return quizQueries.transactionWithResult {
+            quizQueries.insertQuiz(
+                amountQuestions = quiz.amountQuestions,
+                amountCorrectAnswers = quiz.amountCorrectAnswers,
+                createdAt = quiz.createdAt,
+                playerNickname = quiz.playerNickname
+            )
 
-        return quizQueries.lastInsertRowId().executeAsOne()
+            quizQueries.lastInsertRowId().executeAsOne()
+        }
     }
 
     suspend fun fetchQuiz(quizId: Long): Quiz {
