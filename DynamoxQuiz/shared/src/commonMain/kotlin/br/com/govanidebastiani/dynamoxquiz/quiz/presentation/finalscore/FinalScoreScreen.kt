@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColor
+import br.com.govanidebastiani.dynamoxquiz.core.presentation.LoadingState
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.quizMock
 import dynamoxquiz.shared.generated.resources.Res
@@ -69,7 +70,7 @@ fun FinalScoreScreen(
             verticalArrangement = Arrangement.Center
         ) {
             if (state.isLoading) {
-                CircularProgressIndicator()
+                LoadingState()
             } else {
                 Card(
                     colors = CardDefaults.cardColors(

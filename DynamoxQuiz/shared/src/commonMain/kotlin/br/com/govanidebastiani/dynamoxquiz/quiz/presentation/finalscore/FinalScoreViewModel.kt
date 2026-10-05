@@ -23,10 +23,11 @@ class FinalScoreViewModel(
 
     init {
         viewModelScope.launch {
+            val quiz = fetchQuizByIdUseCase.invoke(quizId)
             _state.update {
                 it.copy(
                     isLoading = false,
-                    quiz = fetchQuizByIdUseCase.invoke(quizId),
+                    quiz = quiz,
                     ignoreIds = ignoreIds
                 )
             }

@@ -38,6 +38,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColor
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColorVariant
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.GreenColor
+import br.com.govanidebastiani.dynamoxquiz.core.presentation.LoadingState
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Question
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.questionMock
 import dynamoxquiz.shared.generated.resources.Res
@@ -100,13 +101,7 @@ fun QuizScreen(
         }
     ) { paddingValues ->
         if (state.isLoading) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            LoadingState()
         } else {
             state.errorMessage?.let {
                 Column(

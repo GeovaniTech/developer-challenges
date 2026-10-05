@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.govanidebastiani.dynamoxquiz.core.presentation.DynamoxPrimaryColor
+import br.com.govanidebastiani.dynamoxquiz.core.presentation.LoadingState
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.quizMock
 import dynamoxquiz.shared.generated.resources.Res
@@ -59,14 +60,7 @@ fun HistoryScreen(
         }
     ) { paddingValues ->
         if (state.isLoading) {
-            Column(
-                modifier = Modifier.fillMaxSize()
-                    .consumeWindowInsets(paddingValues),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            LoadingState()
         } else {
             if (state.quizzes.isEmpty()) {
                 Column(
