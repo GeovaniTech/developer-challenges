@@ -15,9 +15,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction.Companion.Done
@@ -115,6 +118,9 @@ fun PlayerScreen(
                         onValueChange = onNicknameChanged,
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = DynamoxPrimaryColor
+                        ),
                         placeholder = {
                             Text(text = stringResource(Res.string.player_nickname_screen_enter_your_nickname))
                         },
@@ -139,6 +145,7 @@ fun PlayerScreen(
                             keyboardController?.hide()
                             onStartQuizClick()
                         },
+                        colors = ButtonDefaults.buttonColors(containerColor = DynamoxPrimaryColor),
                         enabled = state.playerNickname.isNotBlank(),
                         modifier = Modifier
                             .fillMaxWidth()
