@@ -38,7 +38,7 @@ class FetchAllQuizzesUseCaseTest {
         fakeQuizRepositoryImpl.createQuiz(quiz1)
         fakeQuizRepositoryImpl.createQuiz(quiz2)
 
-        val result = fakeQuizRepositoryImpl.fetchAllQuizzes()
+        val result = fetchAllQuizzesUseCase.invoke()
 
         assertEquals(2, result.size)
         assertEquals(quiz1.playerNickname, result.first().playerNickname)
@@ -47,7 +47,7 @@ class FetchAllQuizzesUseCaseTest {
 
     @Test
     fun `deve retornar uma lista vazia caso ainda nao exitam quizzes`() = runTest {
-        val result = fakeQuizRepositoryImpl.fetchAllQuizzes()
+        val result = fetchAllQuizzesUseCase.invoke()
         assertTrue(result.isEmpty())
     }
 }
