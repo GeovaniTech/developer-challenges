@@ -36,6 +36,8 @@ class FakeQuizRepositoryImpl: QuizRepository {
     override suspend fun createQuiz(quiz: Quiz): Long {
         if (shouldThrowLocalError) throw IllegalStateException("Database error")
 
+        // To emulate the autoincrement
+        quiz.id = (savedQuizzes.size + 1).toLong()
         savedQuizzes.add(quiz)
 
         return quiz.id

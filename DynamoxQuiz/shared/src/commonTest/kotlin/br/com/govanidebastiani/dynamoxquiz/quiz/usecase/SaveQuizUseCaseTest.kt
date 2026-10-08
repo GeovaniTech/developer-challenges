@@ -21,27 +21,21 @@ class SaveQuizUseCaseTest {
 
     @Test
     fun  `deve retornar o id do quiz apos salvar`() = runTest {
-        val quizId = fakeQuizRepositoryImpl.createQuiz(
-            quiz = Quiz(
-                id = 1,
-                playerNickname = "Geovani",
-                amountCorrectAnswers = 10,
-                amountQuestions = 10,
-                createdAt = Clock.System.now().toEpochMilliseconds()
-            )
+        val firstQuizId = saveQuizUseCase.invoke(
+            playerNickname = "Geovani",
+            amountCorrectAnswers = 10
         )
 
-        assertEquals(1, quizId)
-
-        val secondQuiz = fakeQuizRepositoryImpl.createQuiz(
-            quiz = Quiz(
-                id = 2,
-                playerNickname = "Pedro",
-                amountCorrectAnswers = 10,
-                amountQuestions = 10,
-                createdAt = Clock.System.now().toEpochMilliseconds()
-            )
+        val secondQuizId = saveQuizUseCase.invoke(
+            playerNickname = "Pedro",
+            amountCorrectAnswers = 8
         )
-        assertEquals(2, secondQuiz)
+
+        assertEquals(1, firstQuizId)
+        assertEquals(2, secondQuizId)
+
+        assertEquals(2, fakeQuizRepositoryImpl.savedQuizzes.size)
+        assertEquals("Geovani", fakeQuizRepositoryImpl.savedQuizzes.first().playerNickname)
+        assertEquals("Pedro", fakeQuizRepositoryImpl.savedQuizzes.last().playerNickname)
     }
  }
