@@ -55,11 +55,4 @@ class FakeQuizRepositoryImpl: QuizRepository {
 
         return savedQuizzes.toList()
     }
-
-    fun clear() {
-        savedQuizzes.clear()
-        fetchQuestionResult = null
-        submitAnswerResult = null
-        shouldThrowLocalError = false
-    }
 }
