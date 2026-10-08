@@ -1,4 +1,4 @@
-package br.com.govanidebastiani.dynamoxquiz.quiz.usecase
+package br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase
 
 import br.com.govanidebastiani.dynamoxquiz.core.domain.Result
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.FakeQuizRepositoryImpl
