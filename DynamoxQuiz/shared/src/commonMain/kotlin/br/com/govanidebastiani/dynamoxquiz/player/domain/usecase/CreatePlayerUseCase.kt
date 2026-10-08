@@ -1,6 +1,5 @@
 package br.com.govanidebastiani.dynamoxquiz.player.domain.usecase
 
-import androidx.compose.animation.core.snap
 import br.com.govanidebastiani.dynamoxquiz.player.domain.Player
 import br.com.govanidebastiani.dynamoxquiz.player.domain.exception.PlayerAlreadyExistsException
 import br.com.govanidebastiani.dynamoxquiz.player.domain.repository.PlayerRepository

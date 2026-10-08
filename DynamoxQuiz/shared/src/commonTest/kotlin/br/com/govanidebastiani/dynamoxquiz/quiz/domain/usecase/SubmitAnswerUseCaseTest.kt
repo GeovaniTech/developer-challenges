@@ -1,10 +1,9 @@
 package br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase
 
 import br.com.govanidebastiani.dynamoxquiz.core.domain.DataError
+import br.com.govanidebastiani.dynamoxquiz.core.domain.Result
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.FakeQuizRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.dto.QuestionAnswerResponseDto
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SubmitAnswerUseCase
-import br.com.govanidebastiani.dynamoxquiz.core.domain.Result
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test

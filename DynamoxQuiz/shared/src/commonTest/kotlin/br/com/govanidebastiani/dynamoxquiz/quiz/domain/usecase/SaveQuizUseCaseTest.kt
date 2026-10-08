@@ -1,13 +1,10 @@
 package br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase
 
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.FakeQuizRepositoryImpl
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Quiz
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.SaveQuizUseCase
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.time.Clock
 
 class SaveQuizUseCaseTest {
     private lateinit var fakeQuizRepositoryImpl: FakeQuizRepositoryImpl

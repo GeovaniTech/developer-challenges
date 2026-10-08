@@ -3,7 +3,6 @@ package br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase
 import br.com.govanidebastiani.dynamoxquiz.core.domain.Result
 import br.com.govanidebastiani.dynamoxquiz.quiz.data.FakeQuizRepositoryImpl
 import br.com.govanidebastiani.dynamoxquiz.quiz.domain.Question
-import br.com.govanidebastiani.dynamoxquiz.quiz.domain.usecase.FetchNewQuestionUseCase
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
